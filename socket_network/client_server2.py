@@ -9,7 +9,12 @@ print(f"[+] Client connection at: {ip_server}:{port}")
 client_server.connect((ip_server, port))
 print(f"[+] Connected")
 
-client_server.send(b"[+] Hello server from client2!")
+i = 0
+while i < 5:
+    msg_to_server = b"[+] Message from client2: Hello server!"
+    client_server.send(msg_to_server)
+    i = i + 1
+    
 msg = client_server.recv(1024)
-print(f"Data from server: {msg.decode()}")
+print(f"[+] Data from server: {msg.decode()}")
 client_server.close()
